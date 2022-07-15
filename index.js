@@ -2,18 +2,31 @@ const colorContainer = document.getElementById('container-color')
 const emojiContainer = document.getElementById('emojis-list')
 
 async function getColors() {
-    const res = await fetch('https://www.example.com/colors')
-    return res.json()
+    try {
+        const res = await fetch('https://www.example.com/colors')
+        return res.json()
+    } catch (err) {
+        console.log(err)
+        return null
+    }
 }
 
 async function getEmojis() {
-    const res = await fetch('https://www.example.com/emojis')
-    return res.json()
+    try {
+        const res = await fetch('https://www.example.com/emojis')
+        return res.json()
+    } catch (err) {
+        console.log(err)
+        return null
+    }
 }
 
 async function render() {
     const colors = await getColors()
     const emojis = await getEmojis()
+    if (!colors || !emojis) {
+        colorContainer.html = "Could not load resources"
+    }
     let colorContent = ''
     colors.forEach(color => {
         colorContent += `
