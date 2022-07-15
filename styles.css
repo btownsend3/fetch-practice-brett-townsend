@@ -20,7 +20,7 @@
     max-width: 5rem;
 }
 
-.color {
+.color, p {
     text-align: center;
     margin: 0;
 }
